@@ -74,6 +74,12 @@ jobs:
             else
               return 1
             fi
+      - run:
+          name: Install PIP
+          command: sudo apt-get install python-pip python-dev
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
       - destroy_environment
 
 # Invoke jobs via workflows
