@@ -59,7 +59,7 @@ jobs:
             
   smoke_test:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.9-alpine3.16
     steps:
       - checkout
       - run: apk add --update curl
