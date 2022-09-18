@@ -56,12 +56,30 @@ jobs:
           name: Configure server
           command: |
             ansible-playbook -i inventory.txt main.yml
+            
+  smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run: apk add --update curl
+      - run:
+          name: smoke test
+          command: |
+            URL="http://3.86.91.143:3000"
+            # Test if website exists
+            if curl -s --head ${URL} 
+            then
+              return 0
+            else
+              return 1
+            fi
+      - destroy_environment      
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   create-infrastructure-workflow:
     jobs:
-      - configure_infrastructure
+      - smoke_test
 
 
