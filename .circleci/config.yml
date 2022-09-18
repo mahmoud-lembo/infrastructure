@@ -42,7 +42,7 @@ jobs:
       - destroy_environment
   configure_infrastructure: 
     docker:
-      - image: python:3.8-alpine3.12
+      - image: python:3.9-alpine3.16
     steps:
       - checkout
       - add_ssh_keys:
@@ -55,7 +55,7 @@ jobs:
       - run:
           name: Configure server
           command: |
-            ansible-playbook main.yml -i inventory.txt
+            ansible-playbook -i inventory.txt main.yml
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
