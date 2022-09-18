@@ -5,5 +5,3 @@
   hosts: 3.86.91.143
   user: ubuntu
   become: true
-  roles:
-   - setup
